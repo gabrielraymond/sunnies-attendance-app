@@ -1,4 +1,6 @@
+import axios from "axios";
 import Image from "next/image";
+import { useEffect } from "react";
 // import { useState } from "react";
 import BtnAction from "./BtnAction";
 import classes from "./Card.module.css";
@@ -17,6 +19,10 @@ function Card(props) {
     data,
     leadId,
     setLeadId,
+    event_id,
+    allEvent,
+    popLoading,
+    setPopupLoading,
   } = props;
   // const [popupSuccess, setPopupSuccess] = useState(false);
   // const [popupFailed, setPopupFailed] = useState(false);
@@ -24,7 +30,60 @@ function Card(props) {
   const handleDetail = (lead_id) => {
     setLeadId(lead_id);
     setDetailActive(true);
-    // console.log(lead_id);
+  };
+
+  const postAttendance = async (lead_id) => {
+    setPopupLoading(true);
+    const data = {
+      type: "attendance",
+      is_attend: true,
+    };
+    try {
+      const res = await axios.post(
+        `https://sunniescrmrebornv2.suneducationgroup.com/api/public/event-registration/${event_id}/leads/${lead_id}/attend`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
+      console.log(res);
+      setPopupLoading(false);
+      setPopupSuccess(true);
+    } catch (error) {
+      console.error(error);
+      setPopupLoading(false);
+      setPopupFailed(true);
+    }
+  };
+
+  const postRegister = async (lead_id) => {
+    setPopupLoading(true);
+    const data = {
+      type: "register",
+      is_attend: true,
+    };
+    try {
+      const res = await axios.post(
+        `https://sunniescrmrebornv2.suneducationgroup.com/api/public/event-registration/${event_id}/leads/${lead_id}/attend`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
+      console.log(res);
+      setPopupLoading(false);
+      setPopupSuccess(true);
+    } catch (error) {
+      console.error(error);
+      setPopupLoading(false);
+      setPopupFailed(true);
+    }
   };
 
   return (
@@ -79,25 +138,40 @@ function Card(props) {
                     width={28}
                     height={28}
                     layout={"fixed"}
-                    alt={'user'}
+                    alt={"user"}
                   />
                   <span>Detail</span>
                 </BtnAction>
               </div>
-
-              <div onClick={() => setPopupFailed(!popupFailed)}>
-                <BtnAction bg={"#16BD98"}>
-                  <Image
-                    src={"/images/icon/check.png"}
-                    width={28}
-                    height={28}
-                    layout={"fixed"}
-                    style={{ marginTop: "3px" }}
-                    alt="check"
-                  />
-                  <span>Attended</span>
-                </BtnAction>
-              </div>
+              {!allEvent ? (
+                <div onClick={() => postAttendance(data?.leads_id)}>
+                  <BtnAction bg={"#16BD98"}>
+                    <Image
+                      src={"/images/icon/check.png"}
+                      width={28}
+                      height={28}
+                      layout={"fixed"}
+                      style={{ marginTop: "3px" }}
+                      alt="check"
+                    />
+                    <span>Attended</span>
+                  </BtnAction>
+                </div>
+              ) : (
+                <div onClick={() => postRegister(data?.leads_id)}>
+                  <BtnAction bg={"#5BBED9"}>
+                    <Image
+                      src={"/images/icon/check.png"}
+                      width={28}
+                      height={28}
+                      layout={"fixed"}
+                      style={{ marginTop: "3px" }}
+                      alt="check"
+                    />
+                    <span>Register</span>
+                  </BtnAction>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -113,18 +187,37 @@ function Card(props) {
           />
           <span>Detail</span>
         </BtnAction>
-
-        <BtnAction bg={"#16BD98"}>
-          <Image
-            src={"/images/icon/check.png"}
-            width={28}
-            height={28}
-            layout={"fixed"}
-            style={{ marginTop: "3px" }}
-            alt="check"
-          />
-          <span>Attended</span>
-        </BtnAction>
+        {!allEvent ? (
+          <BtnAction
+            bg={"#16BD98"}
+            onClick={() => postAttendance(data?.leads_id)}
+          >
+            <Image
+              src={"/images/icon/check.png"}
+              width={28}
+              height={28}
+              layout={"fixed"}
+              style={{ marginTop: "3px" }}
+              alt="check"
+            />
+            <span>Attended</span>
+          </BtnAction>
+        ) : (
+          <BtnAction
+            bg={"#5BBED9"}
+            onClick={() => postRegister(data?.leads_id)}
+          >
+            <Image
+              src={"/images/icon/check.png"}
+              width={28}
+              height={28}
+              layout={"fixed"}
+              style={{ marginTop: "3px" }}
+              alt="check"
+            />
+            <span>Register</span>
+          </BtnAction>
+        )}
       </div>
     </div>
   );

@@ -7,9 +7,7 @@ import classes from "./MainPage.module.css";
 
 function MainPage(props) {
   const { event_id } = props;
-  if (event_id) {
-    console.log(event_id);
-  }
+  
 
   const [eventData, setEventData] = useState(null);
   const [eventName, setEventName] = useState("");

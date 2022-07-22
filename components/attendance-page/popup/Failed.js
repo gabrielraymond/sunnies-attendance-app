@@ -4,7 +4,7 @@ import Image from "next/image";
 function Failed(props) {
   const { setPopup } = props;
   return (
-    <div className={classes.success}>
+    <div className={classes.failed}>
       <div className={classes.close}>
         <Image
           src={"/images/icon/times.png"}
@@ -26,8 +26,8 @@ function Failed(props) {
           />
         </div>
 
-        <h1>Attended Success</h1>
-        <p>Congratulations you made it</p>
+        <h1>Something Wrong</h1>
+        <p>Let&apos;s try again</p>
       </div>
     </div>
   );
