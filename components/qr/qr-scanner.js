@@ -123,7 +123,7 @@ function QrScanner(props) {
             onError={handleError}
             onScan={handleScan}
             style={{ width: "100%" }}
-            constraints={{ facingMode: cameraSide ? "environment" : "user" }}
+            constraints={{ facingMode: cameraSide ? "user" : "environment" }}
           />
         </div>
         <button
