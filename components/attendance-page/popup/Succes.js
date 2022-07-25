@@ -29,7 +29,7 @@ function Success(props) {
 
         <h1>Attended Success</h1>
         <p>Congratulations you made it</p>
-        <a href={`/${event_id}`}>Back</a>
+        {/* <a href={`/${event_id}`}>Back</a> */}
       </div>
     </div>
   );

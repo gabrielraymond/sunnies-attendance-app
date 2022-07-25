@@ -219,8 +219,8 @@ function Card(props) {
           </div>
         </div>
       </div>
-      <div className={classes.action_mobile}>
-        <BtnAction bg={"#F3B44A"} onClick={() => setDetailActive(true)}>
+      <div className={classes.action_mobile} onClick={() => handleDetail(data?.leads_id)}>
+        <BtnAction bg={"#F3B44A"} >
           <Image
             src={"/images/icon/bxs_user.png"}
             width={28}
