@@ -55,11 +55,20 @@ function AttendancePage(props) {
         setIsLoading(false);
       } catch (error) {
         console.error(error);
+        setLeadsData([]);
         setIsLoading(false);
       }
     };
     filter && user_type && getLeadsData();
-  }, [searchBy, search, allEvent, filter, user_type, searchColumn, popupLoading]);
+  }, [
+    searchBy,
+    search,
+    allEvent,
+    filter,
+    user_type,
+    searchColumn,
+    popupLoading,
+  ]);
 
   return (
     <section className={classes.attendace_page}>
