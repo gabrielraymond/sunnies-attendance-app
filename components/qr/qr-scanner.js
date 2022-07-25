@@ -122,30 +122,14 @@ function QrScanner(props) {
 
       <div className={classes.scanner}>
         <div className={classes.camera}>
-          {cameraSide ? (
-            <QrReader
-              delay={500}
-              onError={handleError}
-              onScan={handleScan}
-              style={{ width: "100%" }}
-              constraints={{ facingMode: "user" }}
-            />
-          ) : (
-            <QrReader
-              delay={500}
-              onError={handleError}
-              onScan={handleScan}
-              style={{ width: "100%" }}
-              constraints={{ facingMode: "environment" }}
-            />
-          )}
+          <QrReader
+            delay={500}
+            onError={handleError}
+            onScan={handleScan}
+            style={{ width: "100%" }}
+            constraints={{ facingMode: "user" }}
+          />
         </div>
-        <button
-          style={{ color: "#000" }}
-          onClick={() => setCameraSide(!cameraSide)}
-        >
-          Switch Camera
-        </button>
         <p>Place the QR Code in the box</p>
       </div>
     </div>
