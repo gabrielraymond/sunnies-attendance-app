@@ -35,7 +35,11 @@ function MainPage(props) {
     event_id && getEvent();
   }, [event_id]);
 
-  return !eventData ? (
+  return !event_id ? (
+    <div className={classes.mainpage}>
+      <h1>You need input event_id!</h1>
+    </div>
+  ) : !eventData ? (
     <LoadingPage />
   ) : (
     <section className={classes.mainpage}>

@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import classes from "./HeaderFilter.module.css";
 
 function HeaderFilter(props) {
+  const router = useRouter();
   const {
     filter,
     searchColumn,
@@ -13,12 +15,30 @@ function HeaderFilter(props) {
     allEvent,
     setAllEvent,
     user_type,
+    eventName,
   } = props;
   console.log(filter);
   return (
     filter && (
       <div className={classes.header} data-aos="fade-down">
         <div className={classes.header_label}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginRight: "10px",
+              cursor: "pointer",
+            }}
+            onClick={() => router.back()}
+          >
+            <Image
+              src="/images/icon/arrow-left.png"
+              width={25}
+              height={20}
+              alt={"back"}
+              objectFit={"contain"}
+            />
+          </div>
           <div className={classes.icon}>
             <Image
               src="/images/icon/calender.png"
@@ -28,7 +48,7 @@ function HeaderFilter(props) {
               objectFit={"contain"}
             />
           </div>
-          <h1>Event Name Here</h1>
+          <h1>{eventName}</h1>
         </div>
         <hr />
         <div className={classes.filter_form}>

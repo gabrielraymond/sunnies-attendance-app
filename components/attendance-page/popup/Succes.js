@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 function Success(props) {
-  const { setPopup, event_id } = props;
+  const { setPopup, event_id, leadName } = props;
   return (
     <div className={classes.success}>
       <div className={classes.close}>
@@ -28,7 +28,7 @@ function Success(props) {
         </div>
 
         <h1>Attended Success</h1>
-        <p>Congratulations you made it</p>
+        <p>Congratulations {leadName}, you made it</p>
         {/* <a href={`/${event_id}`}>Back</a> */}
       </div>
     </div>

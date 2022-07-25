@@ -15,6 +15,9 @@ import LoadingPopup from "./popup/LoadingPopup";
 
 function AttendancePage(props) {
   const { event_id, filter, user_type } = props;
+  const [eventData, setEventData] = useState(null);
+  const [eventName, setEventName] = useState("");
+
   const [popupSuccess, setPopupSuccess] = useState(false);
   const [popupFailed, setPopupFailed] = useState(false);
   const [popupLoading, setPopupLoading] = useState(false);
@@ -28,6 +31,30 @@ function AttendancePage(props) {
   const [allEvent, setAllEvent] = useState(false);
 
   const [leadsData, setLeadsData] = useState([]);
+
+  useEffect(() => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+    const getEvent = async () => {
+      try {
+        const res = await axios.get(
+          `https://sunniescrmrebornv2.suneducationgroup.com/api/public/event-registration/${event_id}/detail`,
+          config
+        );
+        console.log(res);
+        setEventData(res.data);
+        setEventName(res.data.data.event_name);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    event_id && getEvent();
+  }, [event_id]);
 
   // lead id
   const [leadId, setLeadId] = useState("");
@@ -104,6 +131,7 @@ function AttendancePage(props) {
           allEvent={allEvent}
           setAllEvent={setAllEvent}
           user_type={user_type}
+          eventName={eventName}
         />
 
         {!isLoading ? (
