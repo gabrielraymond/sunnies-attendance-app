@@ -1,5 +1,5 @@
 import classes from "./qr-scanner.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import Popup from "../attendance-page/popup/Layout";
@@ -74,6 +74,10 @@ function QrScanner(props) {
     }
   };
 
+  useEffect(() => {
+    console.log(cameraSide)
+  },[cameraSide])
+
   return (
     <div className={classes.qr_scanner}>
       {popupSuccess && (
@@ -126,12 +130,12 @@ function QrScanner(props) {
             constraints={{ facingMode: cameraSide ? "user" : "environment" }}
           />
         </div>
-        <button
+        <div
           style={{ color: "#000" }}
           onClick={() => setCameraSide(!cameraSide)}
         >
           Switch Camera
-        </button>
+        </div>
         <p>Place the QR Code in the box</p>
       </div>
     </div>
