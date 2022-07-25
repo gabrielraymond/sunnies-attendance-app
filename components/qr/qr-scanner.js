@@ -75,8 +75,8 @@ function QrScanner(props) {
   };
 
   useEffect(() => {
-    console.log(cameraSide)
-  },[cameraSide])
+    console.log(cameraSide);
+  }, [cameraSide]);
 
   return (
     <div className={classes.qr_scanner}>
@@ -122,13 +122,23 @@ function QrScanner(props) {
 
       <div className={classes.scanner}>
         <div className={classes.camera}>
-          <QrReader
-            delay={500}
-            onError={handleError}
-            onScan={handleScan}
-            style={{ width: "100%" }}
-            constraints={{ facingMode: cameraSide ? "user" : "environment" }}
-          />
+          {cameraSide ? (
+            <QrReader
+              delay={500}
+              onError={handleError}
+              onScan={handleScan}
+              style={{ width: "100%" }}
+              constraints={{ facingMode: "user" }}
+            />
+          ) : (
+            <QrReader
+              delay={500}
+              onError={handleError}
+              onScan={handleScan}
+              style={{ width: "100%" }}
+              constraints={{ facingMode: "environment" }}
+            />
+          )}
         </div>
         <div
           style={{ color: "#000" }}
