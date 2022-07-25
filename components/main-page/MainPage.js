@@ -73,8 +73,11 @@ function MainPage(props) {
             Email
           </Btn>
 
-          <BtnWithRefresh bg={"#5BBED9"} link={`/${event_id}/user/qr`}>
-            QR Code
+          <BtnWithRefresh bg={"#5BBED9"} link={`/${event_id}/user/qr/front`}>
+            QR Code (front)
+          </BtnWithRefresh>
+          <BtnWithRefresh bg={"#5BBED9"} link={`/${event_id}/user/qr/back`}>
+            QR Code (back)
           </BtnWithRefresh>
 
           <Btn bg={"#6C5DDE"} link={`/${event_id}/user/register_id`}>

@@ -11,7 +11,7 @@ import Image from "next/image";
 const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false });
 
 function QrScanner(props) {
-  const { event_id } = props;
+  const { event_id, camera } = props;
   const [popupSuccess, setPopupSuccess] = useState(false);
   const [popupFailed, setPopupFailed] = useState(false);
   const [popupLoading, setPopupLoading] = useState(false);
@@ -127,7 +127,9 @@ function QrScanner(props) {
             onError={handleError}
             onScan={handleScan}
             style={{ width: "100%" }}
-            constraints={{ facingMode: "user" }}
+            constraints={{
+              facingMode: camera === "front" ? "user" : "environment",
+            }}
           />
         </div>
         <p>Place the QR Code in the box</p>
