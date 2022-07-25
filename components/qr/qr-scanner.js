@@ -78,7 +78,7 @@ function QrScanner(props) {
     console.log(cameraSide);
   }, [cameraSide]);
 
-  return (
+  return camera && (
     <div className={classes.qr_scanner}>
       {popupSuccess && (
         <Popup>
