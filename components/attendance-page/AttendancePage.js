@@ -43,7 +43,7 @@ function AttendancePage(props) {
     const getLeadsData = async () => {
       try {
         const res = await axios.get(
-          `https://sunniescrmrebornv2.suneducationgroup.com/api/public/event-registration/EVENT.0322.5/leads/search?search_by=${user_type}&search_column=${
+          `https://sunniescrmrebornv2.suneducationgroup.com/api/public/event-registration/${event_id}/leads/search?search_by=${user_type}&search_column=${
             searchColumn ? searchColumn : filter
           }&search_value=${search}&all_event=${
             user_type === "user" ? "false" : allEvent
