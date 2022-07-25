@@ -15,6 +15,7 @@ function QrScanner(props) {
   const [popupSuccess, setPopupSuccess] = useState(false);
   const [popupFailed, setPopupFailed] = useState(false);
   const [popupLoading, setPopupLoading] = useState(false);
+  const [cameraSide, setCameraSide] = useState(false);
 
   const [leadName, setLeadName] = useState("");
   const [data, setData] = useState("No result");
@@ -122,9 +123,15 @@ function QrScanner(props) {
             onError={handleError}
             onScan={handleScan}
             style={{ width: "100%" }}
-            constraints={{ facingMode: 'user' }}
+            constraints={{ facingMode: cameraSide ? "environment" : "user" }}
           />
         </div>
+        <button
+          style={{ color: "#000" }}
+          onClick={() => setCameraSide(!cameraSide)}
+        >
+          Switch Camera
+        </button>
         <p>Place the QR Code in the box</p>
       </div>
     </div>
