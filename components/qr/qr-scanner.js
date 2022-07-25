@@ -122,6 +122,7 @@ function QrScanner(props) {
             onError={handleError}
             onScan={handleScan}
             style={{ width: "100%" }}
+            constraints={{ facingMode: 'user' }}
           />
         </div>
         <p>Place the QR Code in the box</p>
