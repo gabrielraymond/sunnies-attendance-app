@@ -140,12 +140,12 @@ function QrScanner(props) {
             />
           )}
         </div>
-        <div
+        <button
           style={{ color: "#000" }}
           onClick={() => setCameraSide(!cameraSide)}
         >
           Switch Camera
-        </div>
+        </button>
         <p>Place the QR Code in the box</p>
       </div>
     </div>
