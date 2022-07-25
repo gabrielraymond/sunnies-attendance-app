@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import classes from "./button.module.css";
 
-const Btn = (props) => {
+export function Btn(props) {
   return (
     <Link href={props.link}>
       <a className={classes.btn} style={{ background: `${props.bg}` }}>
@@ -12,4 +12,14 @@ const Btn = (props) => {
   );
 };
 
-export default Btn;
+export function BtnWithRefresh(props) {
+  return (
+    <a
+      href={props.link}
+      className={classes.btn}
+      style={{ background: `${props.bg}` }}
+    >
+      {props.children}
+    </a>
+  );
+}

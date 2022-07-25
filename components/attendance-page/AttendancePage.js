@@ -59,7 +59,7 @@ function AttendancePage(props) {
       }
     };
     filter && user_type && getLeadsData();
-  }, [searchBy, search, allEvent, filter, user_type, searchColumn]);
+  }, [searchBy, search, allEvent, filter, user_type, searchColumn, popupLoading]);
 
   return (
     <section className={classes.attendace_page}>

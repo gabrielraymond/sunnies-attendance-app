@@ -59,6 +59,33 @@ function Card(props) {
     }
   };
 
+  const postUnattendance = async (lead_id) => {
+    setPopupLoading(true);
+    const data = {
+      type: "attendance",
+      is_attend: false,
+    };
+    try {
+      const res = await axios.post(
+        `https://sunniescrmrebornv2.suneducationgroup.com/api/public/event-registration/${event_id}/leads/${lead_id}/attend`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
+      console.log(res);
+      setPopupLoading(false);
+      setPopupSuccess(true);
+    } catch (error) {
+      console.error(error);
+      setPopupLoading(false);
+      setPopupFailed(true);
+    }
+  };
+
   const postRegister = async (lead_id) => {
     setPopupLoading(true);
     const data = {
@@ -144,19 +171,35 @@ function Card(props) {
                 </BtnAction>
               </div>
               {!allEvent ? (
-                <div onClick={() => postAttendance(data?.leads_id)}>
-                  <BtnAction bg={"#16BD98"}>
-                    <Image
-                      src={"/images/icon/check.png"}
-                      width={28}
-                      height={28}
-                      layout={"fixed"}
-                      style={{ marginTop: "3px" }}
-                      alt="check"
-                    />
-                    <span>Attended</span>
-                  </BtnAction>
-                </div>
+                data?.attended_event === 0 ? (
+                  <div onClick={() => postAttendance(data?.leads_id)}>
+                    <BtnAction bg={"#16BD98"}>
+                      <Image
+                        src={"/images/icon/check.png"}
+                        width={28}
+                        height={28}
+                        layout={"fixed"}
+                        style={{ marginTop: "3px" }}
+                        alt="check"
+                      />
+                      <span>Attendance</span>
+                    </BtnAction>
+                  </div>
+                ) : (
+                  <div onClick={() => postUnattendance(data?.leads_id)}>
+                    <BtnAction bg={"#E71332"}>
+                      <Image
+                        src={"/images/icon/check.png"}
+                        width={28}
+                        height={28}
+                        layout={"fixed"}
+                        style={{ marginTop: "3px" }}
+                        alt="check"
+                      />
+                      <span>Unattendance</span>
+                    </BtnAction>
+                  </div>
+                )
               ) : (
                 <div onClick={() => postRegister(data?.leads_id)}>
                   <BtnAction bg={"#5BBED9"}>
@@ -188,20 +231,37 @@ function Card(props) {
           <span>Detail</span>
         </BtnAction>
         {!allEvent ? (
-          <BtnAction
-            bg={"#16BD98"}
-            onClick={() => postAttendance(data?.leads_id)}
-          >
-            <Image
-              src={"/images/icon/check.png"}
-              width={28}
-              height={28}
-              layout={"fixed"}
-              style={{ marginTop: "3px" }}
-              alt="check"
-            />
-            <span>Attended</span>
-          </BtnAction>
+          data?.attended_event === 0 ? (
+            <BtnAction
+              bg={"#E71332"}
+              onClick={() => postAttendance(data?.leads_id)}
+            >
+              <Image
+                src={"/images/icon/check.png"}
+                width={28}
+                height={28}
+                layout={"fixed"}
+                style={{ marginTop: "3px" }}
+                alt="check"
+              />
+              <span>Attended</span>
+            </BtnAction>
+          ) : (
+            <BtnAction
+              bg={"#16BD98"}
+              onClick={() => postUnattendance(data?.leads_id)}
+            >
+              <Image
+                src={"/images/icon/check.png"}
+                width={28}
+                height={28}
+                layout={"fixed"}
+                style={{ marginTop: "3px" }}
+                alt="check"
+              />
+              <span>Unattendance</span>
+            </BtnAction>
+          )
         ) : (
           <BtnAction
             bg={"#5BBED9"}

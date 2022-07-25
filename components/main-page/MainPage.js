@@ -1,13 +1,12 @@
 import axios from "axios";
 import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
-import Btn from "../button/button";
+import { Btn, BtnWithRefresh } from "../button/button";
 import LoadingPage from "../loading/loading-page";
 import classes from "./MainPage.module.css";
 
 function MainPage(props) {
   const { event_id } = props;
-  
 
   const [eventData, setEventData] = useState(null);
   const [eventName, setEventName] = useState("");
@@ -66,19 +65,19 @@ function MainPage(props) {
         </h3>
         <h3>Please select attendance method</h3>
         <div className={classes.action}>
-          <Btn bg={"#16BD98"} link={`/${event_id}/admin/email`}>
+          <Btn bg={"#16BD98"} link={`/${event_id}/user/email`}>
             Email
           </Btn>
 
-          <Btn bg={"#5BBED9"} link={`/${event_id}/admin/qr`}>
+          <BtnWithRefresh bg={"#5BBED9"} link={`/${event_id}/user/qr`}>
             QR Code
-          </Btn>
+          </BtnWithRefresh>
 
-          <Btn bg={"#6C5DDE"} link={`/${event_id}/admin/register_id`}>
+          <Btn bg={"#6C5DDE"} link={`/${event_id}/user/register_id`}>
             Registration ID
           </Btn>
 
-          <Btn bg={"#F3B44A"} link={`/${event_id}/admin/mobile`}>
+          <Btn bg={"#F3B44A"} link={`/${event_id}/user/mobile`}>
             Phone
           </Btn>
         </div>

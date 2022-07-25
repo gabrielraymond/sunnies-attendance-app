@@ -134,3 +134,9 @@
 .desc p span {
   color: #9b9b9b;
 }
+
+@media only screen and (max-width: 600px) {
+  .detail{
+    width: fit-content;
+  }
+}

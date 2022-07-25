@@ -1,8 +1,9 @@
 import classes from "./Layout.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 function Success(props) {
-  const { setPopup } = props;
+  const { setPopup, event_id } = props;
   return (
     <div className={classes.success}>
       <div className={classes.close}>
@@ -28,6 +29,7 @@ function Success(props) {
 
         <h1>Attended Success</h1>
         <p>Congratulations you made it</p>
+        <a href={`/${event_id}`}>Back</a>
       </div>
     </div>
   );
