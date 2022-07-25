@@ -147,5 +147,9 @@
 
   .action_mobile {
     display: flex;
+    justify-content: space-between;
+  }
+  .mobile_btn{
+    width: 45%;
   }
 }

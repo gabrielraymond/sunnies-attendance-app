@@ -125,6 +125,7 @@ function AttendancePage(props) {
                   allEvent={allEvent}
                   popupLoading={popupLoading}
                   setPopupLoading={setPopupLoading}
+                  user_type={user_type}
                 />
               );
             })

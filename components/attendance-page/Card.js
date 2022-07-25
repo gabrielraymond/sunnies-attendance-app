@@ -23,6 +23,7 @@ function Card(props) {
     allEvent,
     popLoading,
     setPopupLoading,
+    user_type,
   } = props;
   // const [popupSuccess, setPopupSuccess] = useState(false);
   // const [popupFailed, setPopupFailed] = useState(false);
@@ -186,19 +187,21 @@ function Card(props) {
                     </BtnAction>
                   </div>
                 ) : (
-                  <div onClick={() => postUnattendance(data?.leads_id)}>
-                    <BtnAction bg={"#E71332"}>
-                      <Image
-                        src={"/images/icon/check.png"}
-                        width={28}
-                        height={28}
-                        layout={"fixed"}
-                        style={{ marginTop: "3px" }}
-                        alt="check"
-                      />
-                      <span>Unattendance</span>
-                    </BtnAction>
-                  </div>
+                  user_type === "admin" && (
+                    <div onClick={() => postUnattendance(data?.leads_id)}>
+                      <BtnAction bg={"#E71332"}>
+                        <Image
+                          src={"/images/icon/check.png"}
+                          width={28}
+                          height={28}
+                          layout={"fixed"}
+                          style={{ marginTop: "3px" }}
+                          alt="check"
+                        />
+                        <span>Unattendance</span>
+                      </BtnAction>
+                    </div>
+                  )
                 )
               ) : (
                 <div onClick={() => postRegister(data?.leads_id)}>
@@ -219,64 +222,65 @@ function Card(props) {
           </div>
         </div>
       </div>
-      <div className={classes.action_mobile} onClick={() => handleDetail(data?.leads_id)}>
-        <BtnAction bg={"#F3B44A"} >
-          <Image
-            src={"/images/icon/bxs_user.png"}
-            width={28}
-            height={28}
-            layout={"fixed"}
-            alt="user"
-          />
-          <span>Detail</span>
-        </BtnAction>
-        {!allEvent ? (
-          data?.attended_event === 0 ? (
-            <BtnAction
-              bg={"#E71332"}
-              onClick={() => postAttendance(data?.leads_id)}
-            >
-              <Image
-                src={"/images/icon/check.png"}
-                width={28}
-                height={28}
-                layout={"fixed"}
-                style={{ marginTop: "3px" }}
-                alt="check"
-              />
-              <span>Attended</span>
-            </BtnAction>
-          ) : (
-            <BtnAction
-              bg={"#16BD98"}
-              onClick={() => postUnattendance(data?.leads_id)}
-            >
-              <Image
-                src={"/images/icon/check.png"}
-                width={28}
-                height={28}
-                layout={"fixed"}
-                style={{ marginTop: "3px" }}
-                alt="check"
-              />
-              <span>Unattendance</span>
-            </BtnAction>
-          )
-        ) : (
-          <BtnAction
-            bg={"#5BBED9"}
-            onClick={() => postRegister(data?.leads_id)}
-          >
+      <div  className={classes.action_mobile}>
+        <div className={classes.mobile_btn} onClick={() => handleDetail(data?.leads_id)}>
+          <BtnAction bg={"#F3B44A"}>
             <Image
-              src={"/images/icon/check.png"}
+              src={"/images/icon/bxs_user.png"}
               width={28}
               height={28}
               layout={"fixed"}
-              style={{ marginTop: "3px" }}
-              alt="check"
+              alt="user"
             />
-            <span>Register</span>
+            <span>Detail</span>
           </BtnAction>
+        </div>
+        {!allEvent ? (
+          data?.attended_event === 0 ? (
+            <div className={classes.mobile_btn} onClick={() => postAttendance(data?.leads_id)}>
+              <BtnAction bg={"#16BD98"}>
+                <Image
+                  src={"/images/icon/check.png"}
+                  width={28}
+                  height={28}
+                  layout={"fixed"}
+                  style={{ marginTop: "3px" }}
+                  alt="check"
+                />
+                <span>Attended</span>
+              </BtnAction>
+            </div>
+          ) : (
+            user_type === "admin" && (
+              <div className={classes.mobile_btn} onClick={() => postUnattendance(data?.leads_id)}>
+                <BtnAction bg={"#E71332"}>
+                  <Image
+                    src={"/images/icon/check.png"}
+                    width={28}
+                    height={28}
+                    layout={"fixed"}
+                    style={{ marginTop: "3px" }}
+                    alt="check"
+                  />
+                  <span>Unattendance</span>
+                </BtnAction>
+              </div>
+            )
+          )
+        ) : (
+          <div className={classes.mobile_btn} onClick={() => postRegister(data?.leads_id)}>
+            <BtnAction bg={"#5BBED9"}>
+              <Image
+                src={"/images/icon/check.png"}
+                width={28}
+                height={28}
+                layout={"fixed"}
+                style={{ marginTop: "3px" }}
+                alt="check"
+              />
+              <span>Register</span>
+            </BtnAction>
+          </div>
         )}
       </div>
     </div>
