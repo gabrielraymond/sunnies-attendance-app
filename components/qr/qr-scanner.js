@@ -44,7 +44,7 @@ function QrScanner(props) {
         setPopupLoading(false);
         setTimeout(function () {
           router.replace(`/${event_id}`);
-        }, 5000);
+        }, 10000);
       } catch (error) {
         console.error(error);
         setPopupFailed(true);
