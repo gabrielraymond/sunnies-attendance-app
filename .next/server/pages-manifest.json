@@ -1,10 +1,10 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/[event_id]/[user_type]/[filter]": "pages/[event_id]/[user_type]/[filter].html",
   "/[event_id]/[user_type]/qr/[camera]": "pages/[event_id]/[user_type]/qr/[camera].html",
-  "/api/hello": "pages/api/hello.js",
+  "/[event_id]/[user_type]/[filter]": "pages/[event_id]/[user_type]/[filter].html",
   "/[event_id]": "pages/[event_id].html",
+  "/api/hello": "pages/api/hello.js",
   "/": "pages/index.html",
   "/_document": "pages/_document.js",
   "/404": "pages/404.html"
