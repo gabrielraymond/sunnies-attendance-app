@@ -15,15 +15,15 @@
   ],
   "rootMainFiles": [],
   "pages": {
-    "/[event_id]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/[event_id].js"
-    ],
     "/[event_id]/[user_type]/[filter]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/[event_id]/[user_type]/[filter].js"
+    ],
+    "/[event_id]/[user_type]/qr/[camera]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/[event_id]/[user_type]/qr/[camera].js"
     ],
     "/_app": [
       "static/chunks/webpack.js",

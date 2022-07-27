@@ -8,6 +8,7 @@ import Failed from "../attendance-page/popup/Failed";
 import LoadingPopup from "../attendance-page/popup/LoadingPopup";
 import axios from "axios";
 import Image from "next/image";
+import ExpiredEvent from "../expired-event/expired-event";
 const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false });
 
 function QrScanner(props) {
@@ -16,6 +17,8 @@ function QrScanner(props) {
   const [popupFailed, setPopupFailed] = useState(false);
   const [popupLoading, setPopupLoading] = useState(false);
   const [cameraSide, setCameraSide] = useState(false);
+
+  const [eventData, setEventData] = useState(null);
 
   const [leadName, setLeadName] = useState("");
   const [data, setData] = useState("No result");
@@ -75,66 +78,93 @@ function QrScanner(props) {
   };
 
   useEffect(() => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+    const getEvent = async () => {
+      try {
+        const res = await axios.get(
+          `https://sunniescrmrebornv2.suneducationgroup.com/api/public/event-registration/${event_id}/detail`,
+          config
+        );
+        console.log(res);
+        setEventData(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    event_id && getEvent();
+  }, [event_id]);
+
+  useEffect(() => {
     console.log(cameraSide);
   }, [cameraSide]);
 
-  return camera && (
-    <div className={classes.qr_scanner}>
-      {popupSuccess && (
-        <Popup>
-          <Success
-            setPopup={setPopupSuccess}
-            event_id={event_id}
-            leadName={leadName}
-          />
-        </Popup>
-      )}
-      {popupFailed && (
-        <Popup>
-          <Failed setPopup={setPopupFailed} />
-        </Popup>
-      )}
-      {popupLoading && (
-        <Popup>
-          <LoadingPopup setPopup={setPopupFailed} />
-        </Popup>
-      )}
-      <div className={classes.header_qr}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginRight: "10px",
-            cursor: "pointer",
-          }}
-          onClick={() => router.back()}
-        >
-          <Image
-            src="/images/icon/arrow-left.png"
-            width={25}
-            height={20}
-            alt={"back"}
-            objectFit={"contain"}
-          />
-        </div>
-        <h1>Scan QR</h1>
-      </div>
-
-      <div className={classes.scanner}>
-        <div className={classes.camera}>
-          <QrReader
-            delay={500}
-            onError={handleError}
-            onScan={handleScan}
-            style={{ width: "100%" }}
-            constraints={{
-              facingMode: camera === "front" ? "user" : "environment",
+  return !eventData ? (
+    <ExpiredEvent />
+  ) : (
+    camera && (
+      <div className={classes.qr_scanner}>
+        {popupSuccess && (
+          <Popup>
+            <Success
+              setPopup={setPopupSuccess}
+              event_id={event_id}
+              leadName={leadName}
+            />
+          </Popup>
+        )}
+        {popupFailed && (
+          <Popup>
+            <Failed setPopup={setPopupFailed} />
+          </Popup>
+        )}
+        {popupLoading && (
+          <Popup>
+            <LoadingPopup setPopup={setPopupFailed} />
+          </Popup>
+        )}
+        <div className={classes.header_qr}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginRight: "10px",
+              cursor: "pointer",
             }}
-          />
+            onClick={() => router.back()}
+          >
+            <Image
+              src="/images/icon/arrow-left.png"
+              width={25}
+              height={20}
+              alt={"back"}
+              objectFit={"contain"}
+            />
+          </div>
+          <h1>Scan QR</h1>
         </div>
-        <p>Place the QR Code in the box</p>
+
+        <div className={classes.scanner}>
+          <div className={classes.camera}>
+            <QrReader
+              delay={500}
+              onError={handleError}
+              onScan={handleScan}
+              style={{ width: "100%" }}
+              constraints={{
+                facingMode: camera === "front" ? "user" : "environment",
+              }}
+            />
+          </div>
+          <p>Place the QR Code in the box</p>
+        </div>
       </div>
-    </div>
+    )
   );
 }
 

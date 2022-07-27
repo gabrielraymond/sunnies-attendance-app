@@ -13,6 +13,7 @@ import EnterId from "../loading/EnterId";
 import NotFound from "../loading/NotFoundData";
 import LoadingPopup from "./popup/LoadingPopup";
 import Unattendance from "./popup/Unattendance";
+import ExpiredEvent from "../expired-event/expired-event";
 
 function AttendancePage(props) {
   const { event_id, filter, user_type } = props;
@@ -100,7 +101,9 @@ function AttendancePage(props) {
     event_id,
   ]);
 
-  return (
+  return !eventData ? (
+    <ExpiredEvent />
+  ) : (
     <section className={classes.attendace_page}>
       {popupSuccess && (
         <Popup>
