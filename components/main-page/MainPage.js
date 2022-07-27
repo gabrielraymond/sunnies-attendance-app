@@ -2,6 +2,7 @@ import axios from "axios";
 import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
 import { Btn, BtnWithRefresh } from "../button/button";
+import ExpiredEvent from "../expired-event/expired-event";
 import LoadingPage from "../loading/loading-page";
 import classes from "./MainPage.module.css";
 
@@ -40,7 +41,7 @@ function MainPage(props) {
       <h1>You need input event_id!</h1>
     </div>
   ) : !eventData ? (
-    <LoadingPage />
+    <ExpiredEvent />
   ) : (
     <section className={classes.mainpage}>
       <div className={classes.attandanceImg} data-aos="fade-right">
