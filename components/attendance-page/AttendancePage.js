@@ -97,6 +97,7 @@ function AttendancePage(props) {
     user_type,
     searchColumn,
     popupLoading,
+    event_id,
   ]);
 
   return (
