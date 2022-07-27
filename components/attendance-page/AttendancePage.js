@@ -12,6 +12,7 @@ import useDebounce from "../../lib/hooks/use-debounce";
 import EnterId from "../loading/EnterId";
 import NotFound from "../loading/NotFoundData";
 import LoadingPopup from "./popup/LoadingPopup";
+import Unattendance from "./popup/Unattendance";
 
 function AttendancePage(props) {
   const { event_id, filter, user_type } = props;
@@ -19,6 +20,7 @@ function AttendancePage(props) {
   const [eventName, setEventName] = useState("");
 
   const [popupSuccess, setPopupSuccess] = useState(false);
+  const [popupUnattendance, setPopupUnattendance] = useState(false);
   const [popupFailed, setPopupFailed] = useState(false);
   const [popupLoading, setPopupLoading] = useState(false);
   const [detailActive, setDetailActive] = useState(false);
@@ -101,7 +103,23 @@ function AttendancePage(props) {
     <section className={classes.attendace_page}>
       {popupSuccess && (
         <Popup>
-          <Success setPopup={setPopupSuccess} />
+          <Success
+            setPopup={setPopupSuccess}
+            event_id={event_id}
+            // leadName={leadName}
+          />
+        </Popup>
+      )}
+      {popupUnattendance && (
+        <Popup>
+          <Unattendance
+            setPopup={setPopupUnattendance}
+            popupLoading={popupLoading}
+            setPopupLoading={setPopupLoading}
+            setPopupFailed={setPopupFailed}
+            leadId={leadId}
+            event_id={event_id}
+          />
         </Popup>
       )}
       {popupFailed && (
@@ -154,6 +172,7 @@ function AttendancePage(props) {
                   popupLoading={popupLoading}
                   setPopupLoading={setPopupLoading}
                   user_type={user_type}
+                  setPopupUnattendance={setPopupUnattendance}
                 />
               );
             })

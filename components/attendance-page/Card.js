@@ -24,6 +24,7 @@ function Card(props) {
     popLoading,
     setPopupLoading,
     user_type,
+    setPopupUnattendance,
   } = props;
   // const [popupSuccess, setPopupSuccess] = useState(false);
   // const [popupFailed, setPopupFailed] = useState(false);
@@ -31,6 +32,11 @@ function Card(props) {
   const handleDetail = (lead_id) => {
     setLeadId(lead_id);
     setDetailActive(true);
+  };
+
+  const handleUnattendance = (lead_id) => {
+    setLeadId(lead_id);
+    setPopupUnattendance(true);
   };
 
   const postAttendance = async (lead_id) => {
@@ -60,32 +66,33 @@ function Card(props) {
     }
   };
 
-  const postUnattendance = async (lead_id) => {
-    setPopupLoading(true);
-    const data = {
-      type: "attendance",
-      is_attend: false,
-    };
-    try {
-      const res = await axios.post(
-        `https://sunniescrmrebornv2.suneducationgroup.com/api/public/event-registration/${event_id}/leads/${lead_id}/attend`,
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      );
-      console.log(res);
-      setPopupLoading(false);
-      setPopupSuccess(true);
-    } catch (error) {
-      console.error(error);
-      setPopupLoading(false);
-      setPopupFailed(true);
-    }
-  };
+  // const postUnattendance = async (lead_id) => {
+  //   setPopupLoading(true);
+
+  //   const data = {
+  //     type: "attendance",
+  //     is_attend: false,
+  //   };
+  //   try {
+  //     const res = await axios.post(
+  //       `https://sunniescrmrebornv2.suneducationgroup.com/api/public/event-registration/${event_id}/leads/${lead_id}/attend`,
+  //       data,
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           "Access-Control-Allow-Origin": "*",
+  //         },
+  //       }
+  //     );
+  //     console.log(res);
+  //     setPopupLoading(false);
+  //     setPopupAttendance(true);
+  //   } catch (error) {
+  //     console.error(error);
+  //     setPopupLoading(false);
+  //     setPopupFailed(true);
+  //   }
+  // };
 
   const postRegister = async (lead_id) => {
     setPopupLoading(true);
@@ -188,7 +195,7 @@ function Card(props) {
                   </div>
                 ) : (
                   user_type === "admin" && (
-                    <div onClick={() => postUnattendance(data?.leads_id)}>
+                    <div onClick={() => handleUnattendance(data?.leads_id)}>
                       <BtnAction bg={"#E71332"}>
                         <Image
                           src={"/images/icon/check.png"}
@@ -222,8 +229,11 @@ function Card(props) {
           </div>
         </div>
       </div>
-      <div  className={classes.action_mobile}>
-        <div className={classes.mobile_btn} onClick={() => handleDetail(data?.leads_id)}>
+      <div className={classes.action_mobile}>
+        <div
+          className={classes.mobile_btn}
+          onClick={() => handleDetail(data?.leads_id)}
+        >
           <BtnAction bg={"#F3B44A"}>
             <Image
               src={"/images/icon/bxs_user.png"}
@@ -237,7 +247,10 @@ function Card(props) {
         </div>
         {!allEvent ? (
           data?.attended_event === 0 ? (
-            <div className={classes.mobile_btn} onClick={() => postAttendance(data?.leads_id)}>
+            <div
+              className={classes.mobile_btn}
+              onClick={() => postAttendance(data?.leads_id)}
+            >
               <BtnAction bg={"#16BD98"}>
                 <Image
                   src={"/images/icon/check.png"}
@@ -252,7 +265,10 @@ function Card(props) {
             </div>
           ) : (
             user_type === "admin" && (
-              <div className={classes.mobile_btn} onClick={() => postUnattendance(data?.leads_id)}>
+              <div
+                className={classes.mobile_btn}
+                onClick={() => postUnattendance(data?.leads_id)}
+              >
                 <BtnAction bg={"#E71332"}>
                   <Image
                     src={"/images/icon/check.png"}
@@ -268,7 +284,10 @@ function Card(props) {
             )
           )
         ) : (
-          <div className={classes.mobile_btn} onClick={() => postRegister(data?.leads_id)}>
+          <div
+            className={classes.mobile_btn}
+            onClick={() => postRegister(data?.leads_id)}
+          >
             <BtnAction bg={"#5BBED9"}>
               <Image
                 src={"/images/icon/check.png"}

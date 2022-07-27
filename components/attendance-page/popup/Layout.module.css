@@ -90,3 +90,25 @@
   color: #2b3944;
   margin: 0;
 }
+
+.unattendance {
+  width: 60%;
+  /* height: 70vh; */
+  background-color: #ffffff;
+  border-radius: 10px;
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; */
+  padding: 10px;
+  text-align: center;
+}
+
+.unattendance h1{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  color: #E71332;
+  margin: 24px 10px 10px;
+}

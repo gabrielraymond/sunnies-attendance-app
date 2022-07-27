@@ -107,6 +107,12 @@
   display: none;
 }
 
+@media only screen and (max-width: 787px) {
+  .action {
+    flex-direction: column;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .initial_user {
     width: 60px;
@@ -149,7 +155,7 @@
     display: flex;
     justify-content: space-between;
   }
-  .mobile_btn{
+  .mobile_btn {
     width: 45%;
   }
 }
