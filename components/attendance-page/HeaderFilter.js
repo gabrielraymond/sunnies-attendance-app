@@ -18,6 +18,17 @@ function HeaderFilter(props) {
     eventName,
   } = props;
   console.log(filter);
+
+  let typeName = filter;
+  if (searchColumn === "mobile") {
+    typeName = "Phone";
+  } else if (searchColumn === "register_id") {
+    typeName = "Registration Id";
+  } else if (searchColumn === "email") {
+    typeName = "Email";
+  } else if (searchColumn === "full_name") {
+    typeName = "Full Name";
+  }
   return (
     filter && (
       <div className={classes.header} data-aos="fade-down">
@@ -84,7 +95,7 @@ function HeaderFilter(props) {
             <input
               type={"text"}
               className={classes.filter_input}
-              placeholder={"Search email/nomor telepon"}
+              placeholder={`Search ${typeName}`}
               onChange={(e) => setSearchValue(e.target.value)}
             />
             <div>

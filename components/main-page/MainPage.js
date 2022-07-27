@@ -57,7 +57,7 @@ function MainPage(props) {
         />
       </div>
       <div className={classes.mainContent} data-aos="zoom-in">
-        <h1>Welcome To Sunnies Event</h1>
+        <h1>Welcome To Sun Education Expo</h1>
         <h3>
           {eventName &&
             eventName.split("-").map((name, idx) => {

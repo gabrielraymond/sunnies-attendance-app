@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
     <Fragment>
       <Head>
         <link rel="icon" href="/images/icon/fav.png" />
-        <title>Sunnies Event</title>
+        <title>Sun Education</title>
       </Head>
       <Component {...pageProps} />
     </Fragment>

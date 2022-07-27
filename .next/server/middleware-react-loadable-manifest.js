@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST={"..\\components\\qr\\qr-scanner.js -> react-qr-reader":{"id":"..\\components\\qr\\qr-scanner.js -> react-qr-reader","files":["static/chunks/node_modules_react-qr-reader_lib_index_js.js"]}}
+self.__REACT_LOADABLE_MANIFEST={}
