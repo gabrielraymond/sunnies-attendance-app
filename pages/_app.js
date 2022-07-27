@@ -1,7 +1,8 @@
 import "../styles/globals.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -11,7 +12,15 @@ function MyApp({ Component, pageProps }) {
       delay: 100,
     });
   });
-  return <Component {...pageProps} />;
+  return (
+    <Fragment>
+      <Head>
+        <link rel="icon" href="/images/icon/fav.png" />
+        <title>Sunnies Event</title>
+      </Head>
+      <Component {...pageProps} />
+    </Fragment>
+  );
 }
 
 export default MyApp;
