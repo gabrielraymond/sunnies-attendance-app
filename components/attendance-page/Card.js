@@ -267,7 +267,7 @@ function Card(props) {
             user_type === "admin" && (
               <div
                 className={classes.mobile_btn}
-                onClick={() => postUnattendance(data?.leads_id)}
+                onClick={() => handleUnattendance(data?.leads_id)}
               >
                 <BtnAction bg={"#E71332"}>
                   <Image
