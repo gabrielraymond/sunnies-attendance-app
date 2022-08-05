@@ -25,9 +25,16 @@ function Failed(props) {
             alt="failed"
           />
         </div>
-        {errorMessage ? <h1>Already Attended</h1> : <h1>Something Wrong</h1>}
 
-        {errorMessage ? <p>{errorMessage}</p> : <p>Let&apos;s try again</p>}
+        {errorMessage ? (
+          <div>
+            <h1>Already Attended</h1> <p>{errorMessage}</p>
+          </div>
+        ) : (
+          <div>
+            <h1>Something Wrong</h1> <p>Let&apos;s try again</p>
+          </div>
+        )}
       </div>
     </div>
   );
