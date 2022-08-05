@@ -18,6 +18,8 @@ function QrScanner(props) {
   const [popupLoading, setPopupLoading] = useState(false);
   const [cameraSide, setCameraSide] = useState(false);
 
+  const [errorMessage, setErrorMessage] = useState();
+
   const [eventData, setEventData] = useState(null);
 
   const [leadName, setLeadName] = useState("");
@@ -52,6 +54,8 @@ function QrScanner(props) {
         console.error(error);
         setPopupFailed(true);
         setPopupLoading(false);
+        console.log(error.response.data.message);
+        setErrorMessage(error.response.data.message);
       }
     }
   };
@@ -120,7 +124,7 @@ function QrScanner(props) {
         )}
         {popupFailed && (
           <Popup>
-            <Failed setPopup={setPopupFailed} />
+            <Failed setPopup={setPopupFailed} errorMessage={errorMessage} />
           </Popup>
         )}
         {popupLoading && (

@@ -20,10 +20,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/[event_id].js"
     ],
-    "/[event_id]/[user_type]/[filter]": [
+    "/[event_id]/[user_type]/qr/[camera]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/[event_id]/[user_type]/[filter].js"
+      "static/chunks/pages/[event_id]/[user_type]/qr/[camera].js"
     ],
     "/_app": [
       "static/chunks/webpack.js",
