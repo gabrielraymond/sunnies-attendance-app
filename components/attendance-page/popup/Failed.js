@@ -28,7 +28,8 @@ function Failed(props) {
 
         {errorMessage ? (
           <div>
-            <h1>Already Attended</h1> <p>{errorMessage}</p>
+            <h1 style={{ color: "#E71332" }}>Already Attended</h1>{" "}
+            <p>{errorMessage}</p>
           </div>
         ) : (
           <div>
